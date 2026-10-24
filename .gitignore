@@ -1,4 +1,8 @@
-# Distribution / packaging
-node_modules
+# Dependencies
+node_modules/
+**/node_modules/
 
-
+# Logs & Environment
+*.log
+cookie*.txt
+.DS_Store
