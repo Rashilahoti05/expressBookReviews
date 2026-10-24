@@ -1,3 +1,8 @@
 curl -X PUT "http://localhost:5000/customer/auth/review/1?review=This%20is%20an%20amazing%20book"
 
-The review for the book with ISBN 1 has been added/updated.
+{
+    "message": "The review for the book with ISBN 1 has been added/updated.",
+    "reviews": {
+        "john": "This is an amazing book"
+    }
+}

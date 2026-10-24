@@ -6,13 +6,11 @@ const regd_users = express.Router();
 let users = [];
 
 const isValid = (username) => {
-    // Check if the username already exists in records
     let usersWithSameName = users.filter((user) => user.username === username);
     return usersWithSameName.length > 0;
 };
 
 const authenticatedUser = (username, password) => {
-    // Check if username and password match records
     let validUsers = users.filter((user) => user.username === username && user.password === password);
     return validUsers.length > 0;
 };
@@ -36,7 +34,7 @@ regd_users.post("/login", (req, res) => {
             username
         };
 
-        return res.status(200).send("User successfully logged in");
+        return res.status(200).send("Customer successfully logged in");
     } else {
         return res.status(208).json({ message: "Invalid Login. Check username and password" });
     }
@@ -58,7 +56,10 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
 
     if (books[isbn]) {
         books[isbn].reviews[username] = review;
-        return res.status(200).send(`The review for the book with ISBN ${isbn} has been added/updated.`);
+        return res.status(200).json({
+            message: `The review for the book with ISBN ${isbn} has been added/updated.`,
+            reviews: books[isbn].reviews
+        });
     } else {
         return res.status(404).json({ message: `Book with ISBN ${isbn} not found` });
     }
